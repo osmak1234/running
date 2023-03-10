@@ -10,7 +10,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.5.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@prisma/client": "^4.9.0",
+    "framer-motion": "^10.2.4",
     "html5-qrcode": "^2.3.7",
     "next": "^13.2.1",
     "react": "18.2.0",
