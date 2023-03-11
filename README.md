@@ -5,6 +5,7 @@
   - [ ] Frontend
 - [ ] Build the backend
 
+  - [ ] Create guest codes
   - [ ] Database
     - [ ] Store teachers
     - [ ] Store run time
@@ -13,13 +14,18 @@
   - [ ] Teacher login
   - [ ] QR code generation
   - [ ] QR code reading
+    - [ ] Close QR code scanner after scan
   - [ ] analytics
     - [ ] Graph
     - [ ] result table
 
 - [ ] Build the front-end
   - [ ] Choose color scheme
+  - [ ] Homepage
+  - [ ] QR code scanner UI
+    - [ ] Button to open QR code scanner
   - [ ] Implement scanner
+  - [ ] Navbar
 
 ### Resources
 

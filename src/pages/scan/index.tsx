@@ -9,9 +9,13 @@ function Scan() {
   }),
     [];
 
+  //TODO: close the camera after scan
+  //TODO: add a button to scan again
   async function getCameras(stop) {
+    // prevent from running multiple times
     if (alreadyRuns) return;
     alreadyRuns = true;
+    //generate qr code scannner
     const devices = await Html5Qrcode.getCameras();
     if (devices && devices.length) {
       const config = { fps: 30, qrbox: 250 };
