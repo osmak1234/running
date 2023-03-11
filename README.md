@@ -20,4 +20,7 @@
 - [ ] Build the front-end
   - [ ] Choose color scheme
   - [ ] Implement scanner
-  - [ ] Vasek
+
+### Resources
+
+https://www.npmjs.com/package/html5-qrcode

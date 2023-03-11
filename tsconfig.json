@@ -5,7 +5,7 @@
     "allowJs": true,
     "checkJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.cjs",
-    "**/*.mjs"
+    "**/*.mjs",
+    "src/pages/Html5qrcodescanner.jsx"
   ],
   "exclude": ["node_modules"]
 }
