@@ -8,8 +8,8 @@ const AdminPanel: NextPage = () => {
   //TODO: Add option to create a new run
   //TODO: Add option to edit a run
   //TODO: Add option to delete a run
-  //TODO: Add option to create a new question
 
+  const [data, setData] = useState();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -21,11 +21,40 @@ const AdminPanel: NextPage = () => {
     }
   }
 
+  async function createAdmin() {
+    const res = await fetch("/api/admin/create", {
+      method: "POST",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((a: any) => {
+        setData(a);
+      })
+      .then(() => {
+        console.log(data);
+      });
+  }
+
   return (
     <>
       <Navbar home={true} admin={false} join={false} />
       {loggedIn ? (
-        <Box pt='100px'>Logged in as admin</Box>
+        <Box pt='100px'>
+          Logged in as admin
+          <Button
+            bg='blue.500'
+            _hover={{ bg: "blue.600" }}
+            _active={{ bg: "blue.700" }}
+            onClick={() => {
+              setLoggedIn(false);
+            }}
+          >
+            Logout
+          </Button>
+        </Box>
       ) : (
         <Box pt='100px' display='flex' flexDir='column'>
           <Text fontSize='xl' textAlign='center'>

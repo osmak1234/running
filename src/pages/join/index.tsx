@@ -65,6 +65,8 @@ const Join: NextPage = () => {
               m='auto'
               bg='blue.500'
               maxW='full'
+              _hover={{ bg: "blue.600" }}
+              _active={{ bg: "blue.700" }}
               // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onClick={() => setCodeEntered(true)}
             >
@@ -91,7 +93,13 @@ const Join: NextPage = () => {
                 placeholder='Enter your Name'
                 onChange={(e) => setName(e.target.value)}
               />
-              <Button bg='blue.500'>Join</Button>
+              <Button
+                _hover={{ bg: "blue.600" }}
+                _active={{ bg: "blue.700" }}
+                bg='blue.500'
+              >
+                Join
+              </Button>
             </Box>
           )}
         </>
