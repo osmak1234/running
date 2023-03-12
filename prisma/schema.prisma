@@ -7,8 +7,37 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
+model Admin {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    email     String   @unique
+    password  String
+    name      String
+    Run       Run[]
+}
+
+//TODO: Create a table to store the results of the runs
+model Run {
+    id          String   @id @default(cuid())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    createdBy   Admin    @relation(fields: [createdById], references: [id])
+    createdById String
+    points      Json     @default("{}")
+    code        String   @unique
+    Runner      Runner[]
+}
+
+// TODO: add a timestamp to each point in the run
+// TODO: Time the run
+
+// know what npx prisma db push does before running the project
+model Runner {
+    id          String   @id @default(cuid())
+    name        String
+    participant Run      @relation(fields: [runId], references: [id])
+    runId       String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 }

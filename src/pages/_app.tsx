@@ -1,9 +1,29 @@
 import { type AppType } from "next/dist/shared/lib/utils";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  const customTheme = extendTheme({
+    colors: {
+      brand: {
+        bg: "blue.900",
+        text: "blue.50",
+        border: "cyan.400",
+        hover: "blue.500",
+        pressed: "blue.600",
+      },
+    },
+    styles: {
+      global: {
+        body: {
+          bg: "gray.900",
+          color: "blue.50",
+        },
+      },
+    },
+  });
+
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={customTheme}>
       <Component {...pageProps} />
     </ChakraProvider>
   );

@@ -30,3 +30,38 @@
 ### Resources
 
 https://www.npmjs.com/package/html5-qrcode
+
+### Api
+
+- createRun
+
+  - Creates a new run session, with model Run
+  - pass in a object: {
+    - creatatorId: string,
+    - points: [
+    - point : {
+    - cords: {
+      - width: float,
+      - height: float,
+      - }
+      - order: int,
+      - qrCodeId: string,
+    - }
+    - ]
+    - }
+  - Returns: {
+    null / idk
+    - }
+
+- createRunnner
+
+  - Creates a new runner session, with model Runner
+  - pass in a object: {
+    - name: String,
+    - runId: string,
+
+  }
+
+  - creatatorId: string - Returns: {
+    null/idk
+  - }
