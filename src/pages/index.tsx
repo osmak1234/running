@@ -6,7 +6,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Navbar home={false} admin={true} join={true} />
+      <Navbar home={false} admin={true} join={true} register={true} />
       <Box>Home</Box>
     </>
   );

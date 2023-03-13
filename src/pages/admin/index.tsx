@@ -41,7 +41,7 @@ const AdminPanel: NextPage = () => {
 
   return (
     <>
-      <Navbar home={true} admin={false} join={false} />
+      <Navbar home={true} admin={false} join={false} register={false} />
       {loggedIn ? (
         <Box pt='100px'>
           Logged in as admin

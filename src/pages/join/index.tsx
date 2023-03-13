@@ -36,7 +36,7 @@ const Join: NextPage = () => {
 
   return (
     <>
-      <Navbar home={true} join={false} admin={true} />
+      <Navbar home={true} join={false} admin={true} register={false} />
       {!codeEntered ? (
         <Box
           w='full'
