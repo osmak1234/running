@@ -3,14 +3,19 @@ import { Box, Input, Text, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { type NextPage } from "next";
 import { prisma } from "~/server/db";
-
+/*
 export async function getServerSideProps(context) {
-  const admin = await prisma.admin.findMany();
-
+  let admin = await prisma.admin.findUnique({
+    where: {
+      username: "admin",
+    },
+  });
+  admin = JSON.parse(JSON.stringify(admin));
   return {
     props: { admin },
   };
 }
+*/
 
 const AdminPanel: NextPage = () => {
   //TODO: Create the admin panel design
@@ -30,14 +35,18 @@ const AdminPanel: NextPage = () => {
       password: password,
     });
     await fetch("http://localhost:3000/api/checkAdmin", {
-      method: "POST",
+      method: "PATCH",
       body: body,
-    }).then((data) => {
-      console.log(data);
-      if (data) {
-        setLoggedIn(true);
-      }
-    });
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.login === true) {
+          setLoggedIn(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   async function createAdmin() {

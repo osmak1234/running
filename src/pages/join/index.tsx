@@ -1,4 +1,3 @@
-import Navbar from "~/components/navbar";
 import { Box, Text, Button, Input } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import Scan from "~/components/scan";
