@@ -2,8 +2,7 @@ import { Box, Container, Text, Stack, Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const Navbar = (display: { home: boolean; join: boolean; admin: boolean }) => {
-  //Props are toggles for text in the navbar
+const Navbar = () => {
   return (
     <>
       <Box
@@ -24,33 +23,27 @@ const Navbar = (display: { home: boolean; join: boolean; admin: boolean }) => {
             alignItems='center'
             justifyContent='center'
           >
-            {display.home ? (
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Link href='/'>
-                  <Text fontSize='lg' fontWeight='bold' display='inline-flex'>
-                    Domů
-                  </Text>
-                </Link>
-              </motion.div>
-            ) : null}
-            {display.join ? (
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Link href='/join'>
-                  <Text fontSize='lg' fontWeight='bold' display='inline-flex'>
-                    Začít
-                  </Text>
-                </Link>
-              </motion.div>
-            ) : null}
-            {display.admin ? (
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Link href='/admin'>
-                  <Text fontSize='lg' fontWeight='bold' display='inline-flex'>
-                    Založit
-                  </Text>
-                </Link>
-              </motion.div>
-            ) : null}
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <Link href='/'>
+                <Text fontSize='lg' fontWeight='bold' display='inline-flex'>
+                  Domů
+                </Text>
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <Link href='/join'>
+                <Text fontSize='lg' fontWeight='bold' display='inline-flex'>
+                  Začít
+                </Text>
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <Link href='/admin'>
+                <Text fontSize='lg' fontWeight='bold' display='inline-flex'>
+                  Založit
+                </Text>
+              </Link>
+            </motion.div>
           </Stack>
         </Container>
       </Box>

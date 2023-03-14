@@ -36,7 +36,6 @@ const Join: NextPage = () => {
 
   return (
     <>
-      <Navbar home={true} join={false} admin={true} />
       {!codeEntered ? (
         <Box
           w='full'
@@ -97,6 +96,7 @@ const Join: NextPage = () => {
                 _hover={{ bg: "blue.600" }}
                 _active={{ bg: "blue.700" }}
                 bg='blue.500'
+                onClick={() => setJoinedRun(true)}
               >
                 Join
               </Button>

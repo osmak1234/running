@@ -6,7 +6,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Navbar home={false} admin={true} join={true} />
       <Box>Home</Box>
     </>
   );

@@ -2,6 +2,15 @@ import Navbar from "~/components/navbar";
 import { Box, Input, Text, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { type NextPage } from "next";
+import { prisma } from "~/server/db";
+
+export async function getServerSideProps(context) {
+  const admin = await prisma.admin.findMany();
+
+  return {
+    props: { admin },
+  };
+}
 
 const AdminPanel: NextPage = () => {
   //TODO: Create the admin panel design
@@ -10,37 +19,48 @@ const AdminPanel: NextPage = () => {
   //TODO: Add option to delete a run
 
   const [data, setData] = useState();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("admin");
+  const [password, setPassword] = useState("admin");
   const [loggedIn, setLoggedIn] = useState(false);
 
-  function login() {
+  async function login() {
     //TODO: Add login form logic
-    if (username === "admin" && password === "admin") {
-      setLoggedIn(true);
-    }
+    const body = JSON.stringify({
+      username: username,
+      password: password,
+    });
+    await fetch("http://localhost:3000/api/checkAdmin", {
+      method: "POST",
+      body: body,
+    }).then((data) => {
+      console.log(data);
+      if (data) {
+        setLoggedIn(true);
+      }
+    });
   }
 
   async function createAdmin() {
-    const res = await fetch("/api/admin/create", {
+    const body = JSON.stringify({
+      email: "admin@gdžímej.cz",
+      name: "admin",
+      username: username,
+      password: password,
+    });
+
+    const res = await fetch("http://localhost:3000/api/createAdmin", {
       method: "POST",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
+      body: body,
     })
       .then((res) => res.json())
-      .then((a: any) => {
-        setData(a);
-      })
-      .then(() => {
-        console.log(data);
+      .then((res) => {
+        console.log(res);
       });
+    setData(res);
   }
 
   return (
     <>
-      <Navbar home={true} admin={false} join={false} />
       {loggedIn ? (
         <Box pt='100px'>
           Logged in as admin
@@ -87,6 +107,8 @@ const AdminPanel: NextPage = () => {
               m='auto'
               w='full'
               maxW='400px'
+              _hover={{ bg: "blue.600" }}
+              _active={{ bg: "blue.700" }}
               bg='blue.500'
               onClick={() => login()}
             >
