@@ -15,6 +15,9 @@ export default async function handler(
     } = JSON.parse(req.body);
     const createRun = await prisma.run.create({
       data: {
+        points: {
+          name: "I suck horse balls",
+        },
         creatorId: info.creatorId,
         points: info.points,
         distance: info.distance,
