@@ -6,18 +6,16 @@ export default async function handler(
 ) {
   if (req.method == "PATCH") {
     const request = JSON.parse(req.body);
-    const admin = await prisma.admin.findUnique({
+    const run = await prisma.run.findUnique({
       where: {
-        username: request.username,
+        code: request.code,
       },
     });
     if (admin.password == request.password) {
       res.json({
-        login: true,
-        adminId: admin.id,
-        username: admin.username,
-        name: admin.name,
-        email: admin.email,
+        exists: true,
+        code: admin.code,
+        creatorId: admin.creatorId,
       });
     } else {
       res.json({ login: false });
