@@ -6,7 +6,10 @@
  */
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"));
 
-module.exports = {
+/** @type {import("next").NextConfig} */
+const config = {
+  reactStrictMode: true,
+
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -14,12 +17,6 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-};
-
-/** @type {import("next").NextConfig} */
-const config = {
-  reactStrictMode: true,
-
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you
    * must comment the below `i18n` config out.
