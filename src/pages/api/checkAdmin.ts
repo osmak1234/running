@@ -14,10 +14,8 @@ export default async function handler(
     if (admin.password == request.password) {
       res.json({
         login: true,
-        adminId: admin.id,
         username: admin.username,
         name: admin.name,
-        email: admin.email,
       });
     } else {
       res.json({ login: false });

@@ -11,11 +11,12 @@ export default async function handler(
         code: request.code,
       },
     });
-    if (admin.password == request.password) {
+    if (request.code == run.code) {
       res.json({
-        exists: true,
-        code: admin.code,
-        creatorId: admin.creatorId,
+        found: true,
+        code: run.code,
+        creatorId: run.creatorId,
+        name: run.name,
       });
     } else {
       res.json({ login: false });
