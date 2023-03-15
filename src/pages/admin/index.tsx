@@ -68,7 +68,7 @@ const AdminPanel: NextPage = () => {
     const body = JSON.stringify({
       creatorId: adminId,
       name: runName,
-      code: "1234",
+      code: "12343",
     });
     const res = await fetch("http://localhost:3000/api/createRun", {
       method: "POST",
@@ -107,6 +107,7 @@ const AdminPanel: NextPage = () => {
               placeholder='Run Name'
               maxW={"400px"}
               m='auto'
+              value={runName}
               onChange={(e) => {
                 setRunName(e.target.value);
               }}
@@ -138,6 +139,7 @@ const AdminPanel: NextPage = () => {
               w='full'
               maxW={"400px"}
               placeholder='Username'
+              value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
@@ -148,6 +150,7 @@ const AdminPanel: NextPage = () => {
               w='full'
               maxW={"400px"}
               placeholder='Password'
+              value={password}
               type={"password"}
               onChange={(e) => {
                 setPassword(e.target.value);
