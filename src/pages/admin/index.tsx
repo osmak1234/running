@@ -1,8 +1,6 @@
-import Navbar from "~/components/navbar";
 import { Box, Input, Text, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { type NextPage } from "next";
-import { prisma } from "~/server/db";
 
 const AdminPanel: NextPage = () => {
   //TODO: Create the admin panel design
@@ -10,16 +8,18 @@ const AdminPanel: NextPage = () => {
   //TODO: Add option to edit a run
   //TODO: Add option to delete a run
 
-  const [data, setData] = useState();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [adminId, setAdminId] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [name, setName] = useState("");
 
-  const [runCode, setRunCode] = useState("");
+  const [newAdminUsername, setNewAdminUsername] = useState("");
+  const [newAdminPassword, setNewAdminPassword] = useState("");
+  const [newAdminName, setNewAdminName] = useState("");
+  const [newAdminEmail, setNewAdminEmail] = useState("");
+
   const [runName, setRunName] = useState("");
-  const [runCreated, setRunCreated] = useState("");
 
   async function login() {
     //TODO: Add login form logic
@@ -32,14 +32,24 @@ const AdminPanel: NextPage = () => {
       body: body,
     })
       .then((res) => res.json())
-      .then((res) => {
-        if (res.login === true) {
-          setLoggedIn(true);
-          setAdminId(res.adminId);
-          setName(res.name);
-          setUsername(res.username);
+      .then(
+        (res: {
+          login: boolean;
+          adminId: string;
+          name: string;
+          username: string;
+        }) => {
+          if (res.login === true) {
+            console.log(res.adminId);
+            setLoggedIn(true);
+            setAdminId(res.adminId);
+            setName(res.name);
+            setUsername(res.username);
+            console.log(res.adminId);
+            console.log(adminId);
+          }
         }
-      })
+      )
       .catch((err) => {
         console.log(err);
       });
@@ -47,35 +57,33 @@ const AdminPanel: NextPage = () => {
 
   async function createAdmin() {
     const body = JSON.stringify({
-      email: "admin@gdžímej.cz",
-      name: "admin",
-      username: username,
-      password: password,
+      email: newAdminEmail,
+      name: newAdminName,
+      username: newAdminUsername,
+      password: newAdminPassword,
     });
-
-    const res = await fetch("http://localhost:3000/api/createAdmin", {
+    await fetch("http://localhost:3000/api/createAdmin", {
       method: "POST",
       body: body,
     })
       .then((res) => res.json())
-      .then((res) => {
+      .then((res: { success: boolean }) => {
         console.log(res);
       });
-    setData(res);
   }
 
   async function createRun() {
     const body = JSON.stringify({
       creatorId: adminId,
       name: runName,
-      code: "12343",
+      points: {},
     });
-    const res = await fetch("http://localhost:3000/api/createRun", {
+    await fetch("http://localhost:3000/api/createRun", {
       method: "POST",
       body: body,
     })
       .then((res) => res.json())
-      .then((res) => {
+      .then((res: { success: boolean }) => {
         if (res.success === true) {
           console.log("success");
         } else {
@@ -120,7 +128,71 @@ const AdminPanel: NextPage = () => {
               _hover={{ bg: "blue.600" }}
               _active={{ bg: "blue.700" }}
               onClick={() => {
-                createRun();
+                createRun().catch((err) => {
+                  console.log(err);
+                });
+              }}
+            >
+              Create Run
+            </Button>
+          </Box>
+          <Box
+            w='full'
+            m='auto'
+            display='flex'
+            flexDir='column'
+            gap={5}
+            mt='20px'
+          >
+            <Text textAlign='center'>Create new Admin login</Text>
+            <Input
+              placeholder='Email'
+              maxW={"400px"}
+              m='auto'
+              value={newAdminEmail}
+              onChange={(e) => {
+                setNewAdminEmail(e.target.value);
+              }}
+            />
+
+            <Input
+              placeholder='Name'
+              maxW={"400px"}
+              m='auto'
+              value={newAdminName}
+              onChange={(e) => {
+                setNewAdminName(e.target.value);
+              }}
+            />
+            <Input
+              placeholder='Username'
+              maxW={"400px"}
+              m='auto'
+              value={newAdminUsername}
+              onChange={(e) => {
+                setNewAdminUsername(e.target.value);
+              }}
+            />
+            <Input
+              placeholder='Password'
+              maxW={"400px"}
+              m='auto'
+              value={newAdminPassword}
+              onChange={(e) => {
+                setNewAdminPassword(e.target.value);
+              }}
+            />
+            <Button
+              w='full'
+              bg='blue.500'
+              maxW={"400px"}
+              m='auto'
+              _hover={{ bg: "blue.600" }}
+              _active={{ bg: "blue.700" }}
+              onClick={() => {
+                createAdmin().catch((err) => {
+                  console.log(err);
+                });
               }}
             >
               Create Run

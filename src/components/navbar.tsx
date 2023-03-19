@@ -1,4 +1,4 @@
-import { Box, Container, Text, Stack, Button } from "@chakra-ui/react";
+import { Box, Container, Text, Stack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 

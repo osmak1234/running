@@ -6,8 +6,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method == "POST") {
-    const info = JSON.parse(req.body);
+    const info: {
+      email: string;
+      password: string;
+      username: string;
+      name: string;
+    } = JSON.parse(req.body);
 
+    console.log(info);
     const createAdmin = await prisma.admin.create({
       data: {
         email: info.email,
@@ -16,6 +22,7 @@ export default async function handler(
         name: info.name,
       },
     });
+    console.log(createAdmin);
     res.json(createAdmin);
   }
 }

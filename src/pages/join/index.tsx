@@ -1,5 +1,5 @@
 import { Box, Text, Button, Input } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Scan from "~/components/scan";
 import { type NextPage } from "next";
 
@@ -19,11 +19,18 @@ const Join: NextPage = () => {
       .then((res) => res.json())
       //TODO: fix this logic 1) check if the code is correct 2) check if the user is already joined
       //TODO: do this logic in the backend, api/findRun
-      .then((data) => {
-        if (data.found === true) {
-          setCodeEntered(true);
+      .then(
+        (data: {
+          found: boolean;
+          runId?: string;
+          name?: string;
+          joined?: boolean;
+        }) => {
+          if (data.found === true) {
+            setCodeEntered(true);
+          }
         }
-      });
+      );
   }
 
   return (

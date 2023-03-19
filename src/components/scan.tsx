@@ -1,9 +1,9 @@
 import { Html5QrcodeScanner, Html5Qrcode } from "html5-qrcode";
 import React, { useEffect } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 function Scan() {
   let alreadyRuns = false;
-  let html5QrcodeScanner;
+  let html5QrcodeScanner: Html5QrcodeScanner;
   // can't run server side
   useEffect(() => {
     getCameras().catch((err) => console.log(err));
@@ -35,9 +35,8 @@ function Scan() {
 
     html5QrcodeScanner.clear().catch((e) => console.log(e));
   }
-  function QrcodeErrorCallback(error: string) {
+  function QrcodeErrorCallback() {
     //TODO: handle scan error
-    error = error;
   }
 
   return (

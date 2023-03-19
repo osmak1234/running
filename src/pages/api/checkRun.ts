@@ -5,7 +5,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method == "PATCH") {
-    const request = JSON.parse(req.body);
+    const request: {
+      code: string
+    } = JSON.parse(req.body);
     const run = await prisma.run.findUnique({
       where: {
         code: request.code,
@@ -15,8 +17,7 @@ export default async function handler(
       res.json({
         found: true,
         code: run.code,
-        creatorId: run.creatorId,
-        name: run.name,
+        creatorId: run.createdById,
       });
     } else {
       res.json({ login: false });
