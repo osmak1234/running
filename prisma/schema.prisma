@@ -1,44 +1,58 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Admin {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    email     String   @unique
-    password  String
-    username  String   @unique
-    name      String
-    Run       Run[]
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  password  String
+  username  String   @unique
+  name      String
+  Run       Run[]
+}
+
+model CompletedRun {
+  id          String        @id @default(cuid())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdBy   Admin         @relation(fields: [createdById], references: [id])
+  createdById String
+  points      Json          @default("{}")
+  code        String        @unique
+  name        String        @default("Nepojmenovaný Běh")
+  joinedGuest JoinedGuest[]
 }
 
 //TODO: Create a table to store the results of the runs
 model Run {
-    id          String   @id @default(cuid())
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    createdBy   Admin    @relation(fields: [createdById], references: [id])
-    createdById String
-    points      Json     @default("{}")
-    code        String   @unique
-    Runner      Runner[]
+  id          String        @id @default(cuid())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdBy   Admin         @relation(fields: [createdById], references: [id])
+  createdById String
+  points      Json          @default("{}")
+  code        String        @unique
+  name        String        @default("Nepojmenovaný Běh")
+  joinedGuest JoinedGuest[]
 }
 
 // TODO: add a timestamp to each point in the run
 // TODO: Time the run
 
 // know what npx prisma db push does before running the project
-model Runner {
-    id          String   @id @default(cuid())
-    name        String
-    participant Run      @relation(fields: [runId], references: [id])
-    runId       String
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+model JoinedGuest {
+  id          String        @id @default(cuid())
+  name        String
+  participant Run           @relation(fields: [runId], references: [id])
+  runId       String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  completed   CompletedRun? @relation(fields: [completedId], references: [id])
 }

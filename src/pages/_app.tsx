@@ -13,6 +13,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         pressed: "blue.600",
       },
     },
+
     styles: {
       global: {
         body: {

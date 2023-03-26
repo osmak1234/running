@@ -1,0 +1,9 @@
+[08:30:37 2023-03-25] FETCHING Version 2.16.2
+[08:30:37 2023-03-25] DOWNLOADING https://github.com/spicetify/spicetify-cli/releases/download/v2.16.2/spicetify-2.16.2-linux-amd64.tar.gz
+[08:30:38 2023-03-25] EXTRACTING /home/user/.spicetify/spicetify.tar.gz
+[08:30:38 2023-03-25] SETTING EXECUTABLE PERMISSIONS TO /home/user/.spicetify/spicetify
+[08:30:38 2023-03-25] REMOVING /home/user/.spicetify/spicetify.tar.gz
+[08:30:38 2023-03-25] spicetify path already set in /home/user/.bashrc, continuing...
+[08:30:38 2023-03-25] spicetify path already set in /home/user/.bash_profile, continuing...
+[08:30:38 2023-03-25] spicetify v2.16.2 was installed successfully to /home/user/.spicetify
+[08:30:38 2023-03-25] Run 'spicetify --help' to get started
