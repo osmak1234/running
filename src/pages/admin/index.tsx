@@ -20,7 +20,9 @@ const AdminPanel: NextPage = () => {
   const [newAdminEmail, setNewAdminEmail] = useState("");
 
   const [runName, setRunName] = useState("");
-
+  // this function checks if an admin exists in the database,
+  // it uses the checkAdmin.ts file in the api folder
+  // it then sets the state of the adminId, name, and username
   async function login() {
     //TODO: Add login form logic
     const body = JSON.stringify({
@@ -54,6 +56,9 @@ const AdminPanel: NextPage = () => {
         console.log(err);
       });
   }
+  // this code creates a new admin in the database
+  // it doens't return anything
+  // Will be repurposed for useing for every user to be able to register
 
   async function createAdmin() {
     const body = JSON.stringify({
@@ -71,6 +76,8 @@ const AdminPanel: NextPage = () => {
         console.log(res);
       });
   }
+  // this function creates a new run in the database
+  // it doesn't return anything
 
   async function createRun() {
     const body = JSON.stringify({
@@ -90,7 +97,9 @@ const AdminPanel: NextPage = () => {
         }
       });
   }
-
+  // there is a variable that will decide what will be shown
+  // loggedIn == true => show the admin AdminPanel
+  // loggedIn == false => show the login form
   return (
     <>
       {loggedIn ? (

@@ -9,6 +9,9 @@ const Join: NextPage = () => {
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
 
+  // uses the checkRun.ts file in the api foldere
+  // it checks if the code is correct if it is it sets the state of codeEntered to true
+  // -> this will show the next form
   async function checkCode() {
     await fetch("http://localhost:3000/api/checkRun", {
       method: "PATCH",
@@ -32,6 +35,12 @@ const Join: NextPage = () => {
         }
       );
   }
+
+  // there are a few variables that decide what will be shown
+  // codeEntered == false -> enter code form
+  // codeEntered == true && joinedRun == false -> enter name for the run form
+  // TODO: check if the user is already in the run with the same name
+  // codeEntered == true && joinedRun == true -> scan the next QR code
 
   return (
     <>

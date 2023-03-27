@@ -1,25 +1,45 @@
+### Currently working on
+
+- [ ] components/qrcode
+  - [ ] pass props with qrcode string to encode
+  - [ ] make logic to generate the code from the string
+- [ ] backend to check the code and update the running progress
+- [ ] front-end to update the running progress ( optimistic updates )
+- [ ] secure the backend so cheating would be harder
+- [ ] qr codes need to be a bit randomised
+- [ ] qr code, how long, where to store
+
 ### Main goals
 
-- [ ] Chose tech stack
-  - [ ] Backend
-  - [ ] Frontend
+- [ ] Solve the problem with data, offline upload
+  - [ ] easier idea: get metadata from images taken on camera
+  - [ ] harder idea: create mobile app for these special people
+  - [ ] best idea: create a space company, launch our own satelits, allow them to connect without playing
+
+- [x] Chose tech stack
+  - [x] Backend
+  - [x] Frontend
 - [ ] Build the backend
 
-  - [ ] Create guest codes
+  - [ ] be able to generate a pdf with all the qr codes
+    - [ ] Qr code storage
+    - [ ] store within points, create api to check the code, and move progress
+  - [x] Create guest codes
   - [ ] Database
     - [ ] Store teachers
     - [ ] Store run time
   - [ ] Run timer
   - [x] Guest login
-  - [ ] Teacher login
+  - [x] Admin login
   - [ ] QR code generation
   - [x] QR code reading
-    - [x] Close QR code scanner after scan
   - [ ] analytics
     - [ ] Graph
     - [ ] result table
 
 - [ ] Build the front-end
+  - [ ] run progress bar
+  - [ ] view past races
   - [x] Choose color scheme
   - [ ] Homepage
   - [x] QR code scanner UI
