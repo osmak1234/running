@@ -17,3 +17,5 @@ function QrCode() {
     </>
   )
 }
+
+export default QrCode
