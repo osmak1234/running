@@ -8,6 +8,12 @@ import InputField from "../../components/adminPage/inputFields";
 
 import { type NextPage } from "next";
 
+// TODO
+///////////////
+// IMPORTANT //  The InputField componet doesn't pass data back to the parrent component yet, someone 😯 could do that, look in read me at the bottom for more information.
+///////////////
+// TODO
+
 const AdminPanel: NextPage = () => {
   //TODO: Create the admin panel design
   //TODO: Add option to edit a run
