@@ -8,14 +8,15 @@ datasource db {
 }
 
 model Admin {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  password  String
-  username  String   @unique
-  name      String
-  Run       Run[]
+  id           String         @id @default(cuid())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  email        String         @unique
+  password     String
+  username     String         @unique
+  name         String
+  Run          Run[]
+  CompletedRun CompletedRun[]
 }
 
 model CompletedRun {
@@ -24,7 +25,7 @@ model CompletedRun {
   updatedAt   DateTime      @updatedAt
   createdBy   Admin         @relation(fields: [createdById], references: [id])
   createdById String
-  points      Json          @default("{}")
+  points      String        @default("{}")
   code        String        @unique
   name        String        @default("Nepojmenovaný Běh")
   joinedGuest JoinedGuest[]
@@ -37,7 +38,7 @@ model Run {
   updatedAt   DateTime      @updatedAt
   createdBy   Admin         @relation(fields: [createdById], references: [id])
   createdById String
-  points      Json          @default("{}")
+  points      String        @default("{}")
   code        String        @unique
   name        String        @default("Nepojmenovaný Běh")
   joinedGuest JoinedGuest[]
@@ -48,11 +49,14 @@ model Run {
 
 // know what npx prisma db push does before running the project
 model JoinedGuest {
-  id          String        @id @default(cuid())
-  name        String
-  participant Run           @relation(fields: [runId], references: [id])
-  runId       String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  completed   CompletedRun? @relation(fields: [completedId], references: [id])
+  id             String       @id @default(cuid())
+  name           String
+  participant    Run          @relation(fields: [runId], references: [id])
+  runId          String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  completed      Boolean      @default(false)
+  completedRun   CompletedRun @relation(fields: [completedRunId], references: [id])
+  completedRunId String
 }
+

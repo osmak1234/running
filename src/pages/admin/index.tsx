@@ -1,10 +1,15 @@
 import { Box, Input, Text, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+// components
+import CreateAdminComponent from "../../components/adminPage/createNewAdmin";
+import LoginForm from "../../components/adminPage/login";
+import InputField from "../../components/adminPage/inputFields";
+
 import { type NextPage } from "next";
 
 const AdminPanel: NextPage = () => {
   //TODO: Create the admin panel design
-  //TODO: Add option to create a new run
   //TODO: Add option to edit a run
   //TODO: Add option to delete a run
 
@@ -20,11 +25,11 @@ const AdminPanel: NextPage = () => {
   const [newAdminEmail, setNewAdminEmail] = useState("");
 
   const [runName, setRunName] = useState("");
+
   // this function checks if an admin exists in the database,
   // it uses the checkAdmin.ts file in the api folder
   // it then sets the state of the adminId, name, and username
   async function login() {
-    //TODO: Add login form logic
     const body = JSON.stringify({
       username: username,
       password: password,
@@ -129,6 +134,9 @@ const AdminPanel: NextPage = () => {
                 setRunName(e.target.value);
               }}
             />
+            <Text textAlign='center'>Add point coordinates for the component</Text>
+            <InputField />
+
             <Button
               w='full'
               bg='blue.500'
@@ -145,112 +153,23 @@ const AdminPanel: NextPage = () => {
               Create Run
             </Button>
           </Box>
-          <Box
-            w='full'
-            m='auto'
-            display='flex'
-            flexDir='column'
-            gap={5}
-            mt='20px'
-          >
-            <Text textAlign='center'>Create new Admin login</Text>
-            <Input
-              placeholder='Email'
-              maxW={"400px"}
-              m='auto'
-              value={newAdminEmail}
-              onChange={(e) => {
-                setNewAdminEmail(e.target.value);
-              }}
-            />
 
-            <Input
-              placeholder='Name'
-              maxW={"400px"}
-              m='auto'
-              value={newAdminName}
-              onChange={(e) => {
-                setNewAdminName(e.target.value);
-              }}
-            />
-            <Input
-              placeholder='Username'
-              maxW={"400px"}
-              m='auto'
-              value={newAdminUsername}
-              onChange={(e) => {
-                setNewAdminUsername(e.target.value);
-              }}
-            />
-            <Input
-              placeholder='Password'
-              maxW={"400px"}
-              m='auto'
-              value={newAdminPassword}
-              onChange={(e) => {
-                setNewAdminPassword(e.target.value);
-              }}
-            />
-            <Button
-              w='full'
-              bg='blue.500'
-              maxW={"400px"}
-              m='auto'
-              _hover={{ bg: "blue.600" }}
-              _active={{ bg: "blue.700" }}
-              onClick={() => {
-                createAdmin().catch((err) => {
-                  console.log(err);
-                });
-              }}
-            >
-              Create Run
-            </Button>
-          </Box>
+          <CreateAdminComponent
+            // I don't know any other way to pass the state variables to the component, if you know a better way implement it
+            newAdminEmail={newAdminEmail}
+            setNewAdminEmail={setNewAdminEmail}
+            newAdminName={newAdminName}
+            setNewAdminName={setNewAdminName}
+            newAdminUsername={newAdminUsername}
+            setNewAdminUsername={setNewAdminUsername}
+            newAdminPassword={newAdminPassword}
+            setNewAdminPassword={setNewAdminPassword}
+            createAdmin={createAdmin}
+          />
         </Box>
       ) : (
-        <Box pt='100px' display='flex' flexDir='column'>
-          <Text fontSize='xl' textAlign='center'>
-            Login
-          </Text>
-          <br />
-          <Box w='full' m='auto' display='flex' flexDir='column' gap={1}>
-            <Input
-              m='auto'
-              w='full'
-              maxW={"400px"}
-              placeholder='Username'
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
-            <br />
-            <Input
-              m='auto'
-              w='full'
-              maxW={"400px"}
-              placeholder='Password'
-              value={password}
-              type={"password"}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-            <br />
-            <Button
-              m='auto'
-              w='full'
-              maxW='400px'
-              _hover={{ bg: "blue.600" }}
-              _active={{ bg: "blue.700" }}
-              bg='blue.500'
-              onClick={() => login()}
-            >
-              Login
-            </Button>
-          </Box>
-        </Box>
+        <LoginForm password={password} username={username} setPassword={setPassword} setUsername={setUsername} login={login} />
+
       )}
     </>
   );
