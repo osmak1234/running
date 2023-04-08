@@ -8,7 +8,7 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
-  reactStrictMode: true,
+  reactStrictMode: false,
 
   typescript: {
     // !! WARN !!
