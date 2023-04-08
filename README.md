@@ -1,5 +1,9 @@
 ### Currently working on
 
+- [ ] Store point in the backend
+  - [ ] api handler for code submit
+  - [ ] 
+
 - [ ] components/qrcode
   - [ ] pass props with qrcode string to encode
   - [ ] make logic to generate the code from the string
@@ -16,11 +20,7 @@
   - [ ] harder idea: create mobile app for these special people
   - [ ] best idea: create a space company, launch our own satelits, allow them to connect without playing
 
-- [x] Chose tech stack
-  - [x] Backend
-  - [x] Frontend
-- [ ] Build the backend
-
+##### Backend
   - [ ] be able to generate a pdf with all the qr codes
     - [ ] Qr code storage
     - [ ] store within points, create api to check the code, and move progress
@@ -37,7 +37,10 @@
     - [ ] Graph
     - [ ] result table
 
+
+
 - [ ] Build the front-end
+  - [x] Dynamic points form
   - [ ] run progress bar
   - [ ] view past races
   - [x] Choose color scheme
@@ -46,42 +49,33 @@
     - [ ] Button to open QR code scanner
   - [x] Implement scanner
   - [x] Navbar
+  - [x] Split admin page into components
 
 ### Resources
 
 https://www.npmjs.com/package/html5-qrcode
+https://www.npmjs.com/package/qrcode
 
-### Api
+### Ideas
 
-- createRun
+The points json has to have these things
 
-  - Creates a new run session, with model Run
-  - pass in a object: {
-    - creatatorId: string,
-    - points: [
-    - point : {
-    - cords: {
-      - width: float,
-      - height: float,
-      - }
-      - order: int,
-      - qrCodeId: string,
-    - }
-    - ]
-    - }
-  - Returns: {
-    null / idk
-    - }
+- Coordinates
+- name
+- order ( solved by storing all points in an array )
 
-- createRunnner
+for now this could be the structure
 
-  - Creates a new runner session, with model Runner
-  - pass in a object: {
-    - name: String,
-    - runId: string,
+points : {
+  ** ARRAY **
+   coordinates: {
+    lat: int
+    len: int
+  },
+  name: str
 
-  }
+}
 
-  - creatatorId: string - Returns: {
-    null/idk
-  - }
+
+
+
